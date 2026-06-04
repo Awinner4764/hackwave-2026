@@ -4,13 +4,13 @@
 	const tracks = [
 		{ id:'01', name:'THE BLUEPRINT',   category:'OPEN INNOVATION', emoji:'📐',
 		  color:'#1E4FCC', colorDim:'#0D2B7A', border:'#2A60E0',
-		  keywords:['Ideas.','Systems.','Solutions.','Anything goes.'] },
+		  desc:'Build anything you can dream up. No boundaries, no limits — just pure creativity. From AI agents to social platforms, if it solves a problem, it belongs here.' },
 		{ id:'02', name:'CYPHER THE CASH', category:'FINTECH',          emoji:'💰',
 		  color:'#2E7D32', colorDim:'#1B4A1E', border:'#3E9C44',
-		  keywords:['Money.','Market.','Finance.','Technology.'] },
+		  desc:'Reimagine how money moves. Build the next-gen wallet, lending protocol, or financial tool. Blockchain, AI trading, or simple budgeting — surprise us.' },
 		{ id:'03', name:'THE SIMULATION',  category:'GAMIFICATION',     emoji:'🎮',
 		  color:'#B8860B', colorDim:'#7A5800', border:'#D4A00D',
-		  keywords:['XP.','Reward.','Engagement.','Play.'] },
+		  desc:'Turn anything into a game. Points, leaderboards, quests — make learning, fitness, or productivity addictive. If it has XP bars, it counts.' },
 	];
 
 	const logItems = [
@@ -312,10 +312,7 @@
 				<h3 class="tname">{t.name}</h3>
 				<div class="tcat">+ {t.category} +</div>
 				<div class="ticon-wrap"><span class="ticon">{t.emoji}</span></div>
-				<div class="tdesc">
-					{#each t.keywords as kw}<span>{kw}</span>{/each}
-					<span class="tplus">+</span>
-				</div>
+				<div class="tdesc">{t.desc}</div>
 			</div>
 		{/each}
 	</div>
@@ -797,12 +794,14 @@
 	text-align:left;
 	position:relative;
 	background:rgba(255,255,255,0.45);
-	display:flex; flex-direction:column; gap:0.1rem;
+	font-family: var(--terminal);
+	font-size: 1.05rem;
+	color: var(--tc);
+	line-height: 1.5;
+	letter-spacing: 0.03em;
 }
 
 .tdesc::before { content:''; position:absolute; top:0; left:0; border-style:solid; border-width:12px 12px 0 0; border-color:var(--tcb) transparent transparent transparent; }
-.tdesc span    { font-family:var(--terminal); font-size:1.1rem; color:var(--tc); line-height:1.35; }
-.tplus { position:absolute; bottom:0.4rem; right:0.6rem; font-family:var(--pixel) !important; font-size:0.55rem !important; color:var(--tcb) !important; }
 
 .palm { position:absolute; bottom:0; font-size:6rem; opacity:0.28; pointer-events:none; line-height:1; }
 .palm-l { left:-0.5rem; }
@@ -1088,8 +1087,7 @@
 	.tcat { font-size: 0.38rem; }
 	.ticon-wrap { width: 68px; height: 68px; }
 	.ticon { font-size: 2.1rem; }
-	.tdesc { padding: 0.7rem 0.75rem 0.9rem; }
-	.tdesc span { font-size: 1rem; }
+	.tdesc { padding: 0.7rem 0.75rem 0.9rem; font-size: 0.95rem; }
 	.palm { font-size: 4rem; }
 
 	/* Event log */
@@ -1147,7 +1145,7 @@
 	.cd-num { font-size: clamp(1.5rem, 10vw, 2.2rem); min-width: 2.7rem; padding: 0.38rem 0.42rem; }
 	.cd-colon { font-size: clamp(1.2rem, 8vw, 1.7rem); margin-bottom: 0.8rem; }
 	.cd-sub { font-size: 0.33rem; }
-	.cd-date { font-size: 0.4rem; }
+	.cd-date { font-size: 0.4rem; text-align: center; }
 
 	/* Tracks – single column */
 	.tracks-section { padding: 2rem 0.7rem 3rem; }
@@ -1157,7 +1155,7 @@
 	.tname { font-size: 0.85rem; }
 	.ticon-wrap { width: 60px; height: 60px; }
 	.ticon { font-size: 1.9rem; }
-	.tdesc span { font-size: 0.92rem; }
+	.tdesc { padding: 0.6rem 0.7rem 0.8rem; font-size: 0.88rem; }
 	.palm { font-size: 3rem; }
 
 	/* Timeline – single column */
