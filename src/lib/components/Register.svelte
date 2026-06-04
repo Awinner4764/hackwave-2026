@@ -1038,12 +1038,38 @@ textarea.error {
 }
 
 /* ---- RESPONSIVE ---- */
-@media (max-width: 520px) {
-	.card { padding: 1.75rem 1.25rem; }
+@media (max-width: 600px) {
+	.content { padding: 1.5rem 0.85rem 5rem; }
+	.hero { padding: 1.75rem 0 1.5rem; }
+	.hero-title { font-size: clamp(3rem, 14vw, 5rem); }
+	.hero-sub { font-size: 0.95rem; }
+	.card { padding: 1.75rem 1.25rem; border-radius: 18px; }
 	.form-grid { grid-template-columns: 1fr; }
 	.field.full { grid-column: 1; }
-	.tracks-grid { grid-template-columns: repeat(2, 1fr); }
-	.hero-title { font-size: 3rem; }
-	.progress-line { width: 32px; }
+	.tracks-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+	.track-card { padding: 0.85rem 0.4rem; }
+	.track-icon { font-size: 1.5rem; }
+	.track-name { font-size: 0.8rem; }
+	.track-desc { font-size: 0.68rem; }
+	.progress-line { width: 36px; }
+	.step-title { font-size: 1.5rem; }
+	.btn-next, .btn-submit { padding: 0.75rem 1.5rem; font-size: 0.95rem; }
+}
+
+@media (max-width: 400px) {
+	.content { padding: 1.25rem 0.65rem 5rem; }
+	.hero-title { font-size: clamp(2.5rem, 16vw, 4rem); }
+	.card { padding: 1.4rem 1rem; border-radius: 14px; }
+	.tracks-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+	.track-card { padding: 0.7rem 0.25rem; gap: 0.2rem; }
+	.track-icon { font-size: 1.3rem; }
+	.track-name { font-size: 0.72rem; }
+	.track-desc { display: none; }
+	.progress-line { width: 24px; }
+	.progress-dot { width: 30px; height: 30px; font-size: 0.78rem; }
+	.progress-label { font-size: 0.62rem; }
+	.google-btn { font-size: 0.9rem; padding: 0.75rem 1rem; }
+	.review-grid { gap: 0.25rem 0.75rem; }
+	.rv-key, .rv-val { font-size: 0.78rem; }
 }
 </style>

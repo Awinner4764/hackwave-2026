@@ -18,7 +18,19 @@
 		{ icon:'</>', label:'Loading workshops',  pct:100, done:true  },
 		{ icon:'👥', label:'Loading mentors',    pct:100, done:true  },
 		{ icon:'🏆', label:'Loading challenges', pct:100, done:true  },
-		{ icon:'🎁', label:'Loading surprises',  pct:73,  done:false },
+		{ icon:'🎁', label:'Loading surprises',  pct:100, done:true  },
+		{ icon:'🎉', label:'Loading results',     pct:0,   done:false },
+	];
+
+	const timelineEvents = [
+		{ date:'JUN 10', title:'OPENING CEREMONY',  desc:'Kickoff call + team formation',   marker:'$' },
+		{ date:'JUN 17', title:'GAME NIGHT',         desc:'Chill, connect, compete',         marker:'>' },
+		{ date:'JUN 24', title:'CREATIVE WORKSHOP',  desc:'Idea validation + design sprint', marker:'*' },
+		{ date:'JUL 01', title:'MIDWAY UPDATE',      desc:'Project check-in + feedback',     marker:'#' },
+		{ date:'JUL 08', title:'DEV WORKSHOP',        desc:'Shipping & deployment tips',      marker:'/' },
+		{ date:'JUL 15', title:'GAME NIGHT',          desc:'Pre-finale chill session',        marker:'>' },
+		{ date:'JUL 22', title:'PROJECT SHOWCASES',   desc:'Final submissions & demos',       marker:'@' },
+		{ date:'JUL 30', title:'RESULTS',             desc:'Winners announced!',              marker:'!' },
 	];
 
 	/* floating pixels – deterministic positions */
@@ -310,6 +322,50 @@
 
 	<div class="palm palm-l">🌴</div>
 	<div class="palm palm-r">🌴</div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     HEATWAVE TIMELINE
+════════════════════════════════════════ -->
+<section class="timeline-section">
+	<div class="section-hdr">
+		<div class="section-sub">// HEATWAVE TIMELINE</div>
+		<h2 class="section-title">THE JOURNEY</h2>
+	</div>
+
+	<div class="timeline">
+		{#each timelineEvents as event, i}
+			<div class="tl-event" class:tl-left={i % 2 === 0}>
+				<div class="tl-marker">{event.marker}</div>
+				<div class="tl-card">
+					<div class="tl-date">{event.date}</div>
+					<h3 class="tl-title">{event.title}</h3>
+					<p class="tl-desc">{event.desc}</p>
+				</div>
+			</div>
+		{/each}
+		<div class="tl-line" aria-hidden="true"></div>
+	</div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PRIZE POOL
+════════════════════════════════════════ -->
+<section class="prize-section">
+	<div class="prize-grid">
+		<div class="prize-head">
+			<div class="section-hdr">
+				<div class="section-sub">// REWARDS</div>
+				<h2 class="section-title">PRIZE POOL</h2>
+			</div>
+			<div class="prize-big">
+				<span class="prize-amount">₹7.5K</span>
+				<span class="prize-label">TOTAL PRIZES</span>
+			</div>
+		</div>
+
+
+	</div>
 </section>
 
 <!-- ═══════════════════════════════════════
@@ -752,6 +808,158 @@
 .palm-l { left:-0.5rem; }
 .palm-r { right:-0.5rem; transform:scaleX(-1); }
 
+/* ═══════════ TIMELINE ═══════════ */
+.timeline-section {
+	background: #0A1628;
+	padding: 5rem 3rem 6rem;
+	position: relative;
+	overflow: hidden;
+	border-top: 3px solid #1A5FAD;
+}
+
+.timeline-section::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-image:
+		linear-gradient(rgba(74,159,232,0.04) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(74,159,232,0.04) 1px, transparent 1px);
+	background-size: 24px 24px;
+	pointer-events: none;
+}
+
+.timeline {
+	position: relative;
+	max-width: 700px;
+	margin: 0 auto;
+	padding: 2rem 0;
+}
+
+.tl-line {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	background: linear-gradient(to bottom, transparent, #4A9FE8, #4A9FE8, transparent);
+	transform: translateX(-50%);
+}
+
+.tl-event {
+	display: flex;
+	align-items: flex-start;
+	gap: 1.5rem;
+	margin-bottom: 2.5rem;
+	position: relative;
+}
+
+.tl-event:last-child { margin-bottom: 0; }
+
+.tl-event:nth-child(odd) {
+	flex-direction: row;
+	padding-right: calc(50% + 2rem);
+}
+.tl-event:nth-child(even) {
+	flex-direction: row-reverse;
+	padding-left: calc(50% + 2rem);
+}
+.tl-event:nth-child(odd) .tl-marker { order: 2; }
+.tl-event:nth-child(even) .tl-marker { order: 1; }
+.tl-event:nth-child(odd) .tl-card { order: 1; text-align: right; }
+.tl-event:nth-child(even) .tl-card { order: 2; text-align: left; }
+
+.tl-marker {
+	font-family: var(--pixel);
+	font-size: 0.7rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #0A1628;
+	border: 2px solid #4A9FE8;
+	color: #4A9FE8;
+	flex-shrink: 0;
+	position: relative;
+	z-index: 2;
+}
+
+.tl-card {
+	flex: 1;
+	background: rgba(74,159,232,0.06);
+	border: 1.5px solid rgba(74,159,232,0.25);
+	padding: 1rem 1.25rem;
+}
+
+.tl-date {
+	font-family: var(--pixel);
+	font-size: 0.38rem;
+	color: #4A9FE8;
+	letter-spacing: 0.15em;
+	margin-bottom: 0.35rem;
+}
+
+.tl-title {
+	font-family: var(--pixel);
+	font-size: 0.55rem;
+	color: #fff;
+	letter-spacing: 0.06em;
+	margin-bottom: 0.3rem;
+}
+
+.tl-desc {
+	font-family: var(--terminal);
+	font-size: 1rem;
+	color: rgba(200,230,255,0.5);
+	letter-spacing: 0.03em;
+	margin: 0;
+}
+
+/* ═══════════ PRIZE POOL ═══════════ */
+.prize-section {
+	background: var(--sand);
+	padding: 5rem 3rem 6rem;
+	position: relative;
+	overflow: hidden;
+}
+
+.prize-section::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(ellipse at 50% 30%, rgba(210,180,120,0.25) 0%, transparent 60%),
+		radial-gradient(ellipse at 20% 80%, rgba(230,200,130,0.15) 0%, transparent 50%);
+	pointer-events: none;
+}
+
+.prize-head {
+	text-align: center;
+	margin-bottom: 3rem;
+}
+
+.prize-big {
+	margin-top: 1.5rem;
+}
+
+.prize-amount {
+	display: block;
+	font-family: var(--pixel);
+	font-size: clamp(2.5rem, 6vw, 4rem);
+	color: var(--navy);
+	letter-spacing: 0.04em;
+	text-shadow: 4px 4px 0 rgba(10,22,40,0.1);
+}
+
+.prize-label {
+	display: block;
+	font-family: var(--pixel);
+	font-size: 0.45rem;
+	color: rgba(10,22,40,0.4);
+	letter-spacing: 0.2em;
+	margin-top: 0.5rem;
+}
+
 /* ═══════════ EVENT LOG ═══════════ */
 .log-section { background:#EDD9AA; padding:3rem; border-top:3px solid var(--navy); }
 
@@ -783,103 +991,202 @@
 .fdots span:nth-child(2) { background:#E0A030; }
 .fdots span:nth-child(3) { background:#30A030; }
 
-/* ── responsive ── */
+/* ── responsive: tablet (≤900px) ── */
 @media (max-width: 900px) {
-	.hud { padding: 0.7rem 1rem; gap: 0.5rem; }
-	.hud-stats { padding: 0.4rem 0.6rem; }
-	.stat-row { font-size: 0.48rem; }
+	.hud { padding: 0.7rem 1rem; }
+	.hud-stats { padding: 0.4rem 0.65rem; }
+	.stat-row { font-size: 0.5rem; }
 	.sbar { width: 60px; }
-	.system-box { padding: 0.4rem 0.7rem; }
-	.sys-hdr { font-size: 0.45rem; }
+	.system-box { padding: 0.4rem 0.75rem; }
+	.sys-hdr { font-size: 0.46rem; }
 	.sys-ln { font-size: 0.9rem; }
 
-	.hero { min-height: 500px; }
-	.hero-text { padding: 1.5rem 1rem; gap: 1.2rem; max-width: 100%; }
-	.hackwave-title { font-size: 2.8rem; }
-	.beat { font-size: 0.6rem; }
+	.hero { min-height: 560px; }
+	.hero-text { padding: 1.5rem 1.5rem; gap: 1.25rem; max-width: 100%; }
+	.hackwave-title { font-size: clamp(3rem, 8vw, 5.5rem); }
+	.beat { font-size: 0.65rem; }
+	.ic { padding: 0.6rem 0.85rem; }
 
-	.info-strip { flex-wrap: wrap; }
-	.ic { padding: 0.5rem 0.75rem; min-width: 80px; }
-	.idiv { display: none; }
+	.hero-icons { gap: 1rem; }
+	.register-cta { padding: 0.85rem 1.6rem; font-size: 0.58rem; }
 
-	.hero-icons { gap: 1rem; flex-wrap: wrap; }
+	.tracks-section { padding: 3.5rem 2rem 5rem; }
+	.tracks-grid { grid-template-columns: 1fr 1fr; gap: 1.75rem; max-width: 700px; margin: 0 auto; }
 
-	.register-cta { padding: 0.8rem 1.5rem; font-size: 0.55rem; }
+	.countdown-section { padding: 3rem 1.5rem; }
+	.cd-num { font-size: clamp(2.2rem, 5vw, 4rem); min-width: 4.5rem; padding: 0.55rem 0.85rem; }
+	.cd-grid { gap: 0.75rem; }
 
-	.tracks-section { padding: 3rem 1.5rem 4rem; }
-	.tracks-grid { grid-template-columns: 1fr 1fr; max-width: 700px; margin: 0 auto; }
-
-	.cd-num { font-size: 2.2rem; min-width: 4rem; padding: 0.5rem 0.75rem; }
-	.cd-secs-unit, .cd-secs-colon { display: none; }
-	.cd-grid { gap: 0.5rem; }
-
-	.log-section { padding: 2rem 1rem; }
+	.log-section { padding: 2.5rem 1.25rem; }
 	.log-panel { max-width: 100%; }
-	.log-head { flex-direction: column; gap: 0.3rem; align-items: flex-start; padding: 0.5rem 1rem; }
-	.log-status { font-size: 0.85rem; }
-	.log-body { padding: 1rem; }
-	.log-row { flex-wrap: wrap; gap: 0.4rem; }
-	.llabel { min-width: auto; flex: 1; font-size: 0.95rem; }
+	.log-body { padding: 1rem 1.25rem; }
 	.ldots { display: none; }
-	.lbar { width: 80px; }
+	.lbar { width: 90px; }
 
-	.footer { padding: 0.6rem 1rem; }
-	.fprompt { font-size: 1rem; }
+	.footer { padding: 0.65rem 1.25rem; }
+	.fprompt { font-size: 1.05rem; }
 }
 
-@media (max-width: 500px) {
-	.particle-canvas { opacity: 0.7; }
+/* ── responsive: mobile (≤640px) ── */
+@media (max-width: 640px) {
+	.particle-canvas { opacity: 0.75; }
 
-	.hud { flex-direction: column; align-items: stretch; gap: 0.4rem; padding: 0.6rem 0.75rem; }
-	.hud-stats { flex-direction: row; justify-content: space-between; }
-	.stat-row { font-size: 0.42rem; }
-	.sbar { width: 45px; height: 6px; }
+	/* HUD – compact but both panels visible */
+	.hud { padding: 0.55rem 0.85rem; }
+	.hud-stats { padding: 0.35rem 0.55rem; }
+	.stat-row { font-size: 0.46rem; gap: 0.25rem; }
+	.sl { min-width: 0.9rem; }
 	.sn { display: none; }
-	.system-box { display: none; }
+	.sbar { width: 44px; height: 6px; }
+	.system-box { padding: 0.35rem 0.65rem; }
+	.sys-hdr { font-size: 0.42rem; }
+	.sys-ln { font-size: 0.82rem; line-height: 1.3; }
 
-	.hero { min-height: auto; height: auto; padding-bottom: 0; }
-	.hero-text { padding: 1.25rem 0.75rem; gap: 1rem; }
+	/* Hero */
+	.hero { height: auto; min-height: 100svh; }
+	.hero-text { padding: 1rem 1rem 1.5rem; gap: 1rem; }
 	.gdg-row { gap: 0.5rem; }
-	.gdg-img { width: 32px; height: 32px; }
-	.gdg-label { font-size: 0.35rem; }
-	.hackwave-title { font-size: 2rem; }
-	.event-pill { font-size: 0.4rem; padding: 0.3rem 0.6rem; }
-	.beat { font-size: 0.5rem; }
+	.gdg-img { width: 34px; height: 34px; }
+	.gdg-label { font-size: 0.37rem; }
+	.event-pill { font-size: 0.42rem; padding: 0.32rem 0.6rem; }
+	.hackwave-title { font-size: clamp(2.8rem, 11vw, 4.2rem); }
+	.beat { font-size: 0.55rem; letter-spacing: 0.16em; }
 
-	.info-strip { flex-direction: column; border: none; }
-	.ic { padding: 0.5rem 0; border-bottom: 1px solid rgba(74,159,232,0.2); align-items: center; }
-	.ic:last-child { border-bottom: none; }
+	/* Info strip – keep horizontal 3-col with visible dividers */
+	.info-strip { display: flex; border: 1.5px solid rgba(74,159,232,0.35); }
+	.ic { flex: 1; padding: 0.55rem 0.3rem; align-items: center; gap: 0.2rem; }
+	.ik { font-size: 0.33rem; letter-spacing: 0.08em; }
+	.iv { font-size: 0.42rem; line-height: 1.45; letter-spacing: 0.03em; }
+	.idiv { display: block; }
 
-	.hero-icons { gap: 0.75rem; }
-	.his { font-size: 0.55rem; }
+	.hero-icons { gap: 0.9rem; }
+	.his { font-size: 0.62rem; }
 	.hil { font-size: 0.3rem; }
 
-	.register-cta { padding: 0.7rem 1.2rem; font-size: 0.5rem; }
+	/* CTA full width */
+	.register-cta { width: 100%; text-align: center; padding: 0.85rem 1rem; font-size: 0.52rem; box-sizing: border-box; }
 
-	.countdown-section { padding: 2.5rem 1rem; }
-	.cd-label { font-size: 1rem; }
-	.cd-num { font-size: 1.6rem; min-width: 2.8rem; padding: 0.4rem 0.5rem; }
-	.cd-colon { font-size: 1.4rem; margin-bottom: 0.8rem; }
+	/* Countdown – hide seconds */
+	.countdown-section { padding: 2.5rem 1rem; gap: 1.5rem; }
+	.cd-label { font-size: 1.05rem; letter-spacing: 0.15em; }
+	.cd-num { font-size: clamp(1.9rem, 7vw, 3rem); min-width: 3.5rem; padding: 0.45rem 0.55rem; }
+	.cd-colon { font-size: clamp(1.5rem, 6vw, 2.2rem); margin-bottom: 1rem; }
+	.cd-sub { font-size: 0.38rem; }
+	.cd-secs-colon, .cd-secs-unit { display: none; }
+	.cd-grid { gap: 0.5rem; }
+	.cd-date { font-size: 0.44rem; letter-spacing: 0.1em; }
 
+	/* Tracks – 2-col */
 	.tracks-section { padding: 2.5rem 1rem 3.5rem; }
 	.section-hdr { margin-bottom: 2rem; }
-	.section-sub { font-size: 1rem; }
-	.section-title { font-size: 1.3rem; }
-	.track-card { padding: 1.5rem 1rem 1.25rem; }
-	.ticon-wrap { width: 64px; height: 64px; }
-	.ticon { font-size: 2rem; }
-	.tdesc span { font-size: 0.95rem; }
+	.section-sub { font-size: 1.05rem; }
+	.section-title { font-size: clamp(1.3rem, 5vw, 2rem); }
+	.tracks-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+	.track-card { padding: 1.4rem 0.9rem 1.2rem; gap: 0.75rem; }
+	.tbadge { font-size: 0.5rem; padding: 0.35rem 0.7rem; }
+	.tname { font-size: clamp(0.8rem, 3vw, 1rem); }
+	.tcat { font-size: 0.38rem; }
+	.ticon-wrap { width: 68px; height: 68px; }
+	.ticon { font-size: 2.1rem; }
+	.tdesc { padding: 0.7rem 0.75rem 0.9rem; }
+	.tdesc span { font-size: 1rem; }
 	.palm { font-size: 4rem; }
 
-	.log-section { padding: 1.5rem 0.75rem; }
-	.log-body { padding: 0.75rem; gap: 0.5rem; }
-	.llabel { font-size: 0.85rem; min-width: auto; }
-	.lbar { width: 60px; height: 10px; }
-	.lpct { font-size: 0.9rem; }
-	.licon { width: 1.2rem; font-size: 0.85rem; }
+	/* Event log */
+	.log-section { padding: 2rem 0.85rem; }
+	.log-head { flex-direction: column; gap: 0.25rem; align-items: flex-start; padding: 0.5rem 0.85rem; }
+	.log-status { font-size: 0.88rem; }
+	.log-body { padding: 0.85rem; gap: 0.55rem; }
+	.log-row { flex-wrap: nowrap; gap: 0.45rem; }
+	.licon { width: 1.2rem; font-size: 0.9rem; }
+	.llabel { font-size: 0.92rem; min-width: auto; flex: 1; }
+	.lbar { width: 65px; height: 11px; }
+	.lpct { font-size: 0.9rem; min-width: 2.6rem; }
 	.lalmost { font-size: 0.9rem; }
 
-	.footer { flex-direction: column; gap: 0.5rem; padding: 0.75rem; text-align: center; }
+	/* Timeline */
+	.timeline-section { padding: 2.5rem 1rem 3.5rem; }
+	.tl-event { gap: 1rem; margin-bottom: 2rem; }
+
+	/* Prize Pool */
+	.prize-section { padding: 2.5rem 1rem 3.5rem; }
+
+	.footer { padding: 0.55rem 0.85rem; }
 	.fprompt { font-size: 0.95rem; }
+}
+
+/* ── responsive: small phone (≤420px) ── */
+@media (max-width: 420px) {
+	/* HUD – collapse to stacked rows, drop system panel */
+	.system-box { display: none; }
+	.hud { flex-direction: column; gap: 0.3rem; padding: 0.5rem 0.75rem; }
+	.hud-stats { flex-direction: row; gap: 0.4rem; justify-content: flex-start; }
+	.stat-row { font-size: 0.44rem; }
+	.sbar { width: 38px; height: 5px; }
+
+	.hackwave-title { font-size: clamp(2.3rem, 14vw, 3rem); }
+	.hero-text { gap: 0.8rem; padding: 0.75rem 0.75rem 1.25rem; }
+	.event-pill { font-size: 0.4rem; }
+	.beat { font-size: 0.5rem; }
+
+	/* Info strip – stacked rows with label ↔ value layout */
+	.info-strip { flex-direction: column; border: 1.5px solid rgba(74,159,232,0.35); }
+	.ic { flex-direction: row; justify-content: space-between; align-items: center; padding: 0.45rem 0.75rem; border-bottom: 1px solid rgba(74,159,232,0.2); gap: 0; }
+	.ic:last-child { border-bottom: none; }
+	.ik { font-size: 0.4rem; letter-spacing: 0.1em; }
+	.iv { font-size: 0.5rem; text-align: right; line-height: 1.4; }
+	.idiv { display: none; }
+
+	.hero-icons { gap: 0.75rem; }
+	.his { font-size: 0.58rem; }
+	.hil { font-size: 0.28rem; }
+
+	/* Countdown – tighter */
+	.countdown-section { padding: 1.75rem 0.7rem; gap: 1.1rem; }
+	.cd-label { font-size: 0.9rem; }
+	.cd-num { font-size: clamp(1.5rem, 10vw, 2.2rem); min-width: 2.7rem; padding: 0.38rem 0.42rem; }
+	.cd-colon { font-size: clamp(1.2rem, 8vw, 1.7rem); margin-bottom: 0.8rem; }
+	.cd-sub { font-size: 0.33rem; }
+	.cd-date { font-size: 0.4rem; }
+
+	/* Tracks – single column */
+	.tracks-section { padding: 2rem 0.7rem 3rem; }
+	.section-title { font-size: 1.25rem; }
+	.tracks-grid { grid-template-columns: 1fr; max-width: 360px; }
+	.track-card { padding: 1.25rem 1.1rem 1rem; gap: 0.7rem; }
+	.tname { font-size: 0.85rem; }
+	.ticon-wrap { width: 60px; height: 60px; }
+	.ticon { font-size: 1.9rem; }
+	.tdesc span { font-size: 0.92rem; }
+	.palm { font-size: 3rem; }
+
+	/* Timeline – single column */
+	.timeline-section { padding: 2rem 0.7rem 3rem; }
+	.tl-line { left: 1.25rem; }
+	.tl-event:nth-child(odd),
+	.tl-event:nth-child(even) {
+		flex-direction: row;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.tl-event:nth-child(odd) .tl-card,
+	.tl-event:nth-child(even) .tl-card { order: 2; text-align: left; }
+	.tl-event:nth-child(odd) .tl-marker,
+	.tl-event:nth-child(even) .tl-marker { order: 1; }
+
+	/* Prizes – single column */
+	.prize-section { padding: 2rem 0.7rem 3rem; }
+
+	/* Log */
+	.log-section { padding: 1.5rem 0.6rem; }
+	.log-body { padding: 0.65rem 0.6rem; gap: 0.45rem; }
+	.licon { width: 1rem; font-size: 0.8rem; }
+	.llabel { font-size: 0.82rem; }
+	.lbar { width: 50px; height: 10px; }
+	.lpct { font-size: 0.82rem; min-width: 2.2rem; }
+	.lalmost { font-size: 0.82rem; }
+
+	.footer { flex-direction: column; gap: 0.4rem; padding: 0.6rem 0.75rem; text-align: center; }
+	.fprompt { font-size: 0.88rem; }
 }
 </style>

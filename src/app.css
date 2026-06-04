@@ -20,6 +20,17 @@
 	--pixel: 'Press Start 2P', monospace;
 	--terminal: 'VT323', monospace;
 	--body: 'Nunito', sans-serif;
+
+	/* Register page – beach/ocean theme */
+	--ocean: #1A7FA8;
+	--ocean-deep: #0D4A6B;
+	--teal: #2BB5A0;
+	--coral: #FF6B5B;
+	--coral-dark: #D94030;
+	--sunset-deep: #FF7E5F;
+	--text-dark: #1A2E3A;
+	--text-mid: #4A6275;
+	--text-light: #8A9EA8;
 }
 
 html, body {
