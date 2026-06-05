@@ -3,13 +3,13 @@
 	/* ── data ── */
 	const tracks = [
 		{ id:'01', name:'THE BLUEPRINT',   category:'OPEN INNOVATION', emoji:'📐',
-		  color:'#1E4FCC', colorDim:'#0D2B7A', border:'#2A60E0',
+		  color:'#1E4FCC', colorDim:'#0D2B7A', border:'#2A60E0', img:'/blueprint.png',
 		  desc:'Build anything you can dream up. No boundaries, no limits — just pure creativity. From AI agents to social platforms, if it solves a problem, it belongs here.' },
 		{ id:'02', name:'CYPHER THE CASH', category:'FINTECH',          emoji:'💰',
-		  color:'#2E7D32', colorDim:'#1B4A1E', border:'#3E9C44',
+		  color:'#2E7D32', colorDim:'#1B4A1E', border:'#3E9C44', img:'/Wallet.png',
 		  desc:'Reimagine how money moves. Build the next-gen wallet, lending protocol, or financial tool. Blockchain, AI trading, or simple budgeting — surprise us.' },
 		{ id:'03', name:'THE SIMULATION',  category:'GAMIFICATION',     emoji:'🎮',
-		  color:'#B8860B', colorDim:'#7A5800', border:'#D4A00D',
+		  color:'#B8860B', colorDim:'#7A5800', border:'#D4A00D', img:'/controller.png',
 		  desc:'Turn anything into a game. Points, leaderboards, quests — make learning, fitness, or productivity addictive. If it has XP bars, it counts.' },
 	];
 
@@ -228,8 +228,8 @@
 			<div class="bracket br-br"></div>
 
 			<div class="gdg-row">
-				<img src="/gdg-logo.png" alt="GDG" class="gdg-img" />
-				<span class="gdg-label">GOOGLE DEVELOPER GROUPS</span>
+				<img src="/GDG logo pixel.png" alt="GDG" class="gdg-img" />
+	<span class="gdg-label">GOOGLE DEVELOPER GROUPS</span>
 			</div>
 
 			<div class="title-block">
@@ -311,7 +311,9 @@
 				<div class="tbadge">TRACK_{t.id}</div>
 				<h3 class="tname">{t.name}</h3>
 				<div class="tcat">+ {t.category} +</div>
-				<div class="ticon-wrap"><span class="ticon">{t.emoji}</span></div>
+			<div class="ticon-wrap">
+				<img src={t.img} alt={t.name} class="timgy" />
+			</div>
 				<div class="tdesc">{t.desc}</div>
 			</div>
 		{/each}
@@ -783,9 +785,14 @@
 	width:88px; height:88px;
 	display:flex; align-items:center; justify-content:center;
 	box-shadow: 4px 4px 0 var(--navy);
+	overflow: hidden;
 }
 
-.ticon { font-size:2.8rem; line-height:1; }
+.timgy {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 
 .tdesc {
 	border:2px solid var(--tcb);
@@ -1086,7 +1093,6 @@
 	.tname { font-size: clamp(0.8rem, 3vw, 1rem); }
 	.tcat { font-size: 0.38rem; }
 	.ticon-wrap { width: 68px; height: 68px; }
-	.ticon { font-size: 2.1rem; }
 	.tdesc { padding: 0.7rem 0.75rem 0.9rem; font-size: 0.95rem; }
 	.palm { font-size: 4rem; }
 
@@ -1154,7 +1160,6 @@
 	.track-card { padding: 1.25rem 1.1rem 1rem; gap: 0.7rem; }
 	.tname { font-size: 0.85rem; }
 	.ticon-wrap { width: 60px; height: 60px; }
-	.ticon { font-size: 1.9rem; }
 	.tdesc { padding: 0.6rem 0.7rem 0.8rem; font-size: 0.88rem; }
 	.palm { font-size: 3rem; }
 
