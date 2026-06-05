@@ -322,6 +322,26 @@
 </section>
 
 <!-- ═══════════════════════════════════════
+     PRIZE POOL
+════════════════════════════════════════ -->
+<section class="prize-section">
+	<div class="prize-grid">
+		<div class="prize-head">
+			<div class="section-hdr">
+				<div class="section-sub">// REWARDS</div>
+				<h2 class="section-title">PRIZE POOL</h2>
+			</div>
+			<div class="prize-big">
+				<span class="prize-amount">₹7.5K</span>
+				<span class="prize-label">TOTAL PRIZES</span>
+			</div>
+		</div>
+
+
+	</div>
+</section>
+
+<!-- ═══════════════════════════════════════
      HEATWAVE TIMELINE
 ════════════════════════════════════════ -->
 <section class="timeline-section">
@@ -342,26 +362,6 @@
 			</div>
 		{/each}
 		<div class="tl-line" aria-hidden="true"></div>
-	</div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     PRIZE POOL
-════════════════════════════════════════ -->
-<section class="prize-section">
-	<div class="prize-grid">
-		<div class="prize-head">
-			<div class="section-hdr">
-				<div class="section-sub">// REWARDS</div>
-				<h2 class="section-title">PRIZE POOL</h2>
-			</div>
-			<div class="prize-big">
-				<span class="prize-amount">₹7.5K</span>
-				<span class="prize-label">TOTAL PRIZES</span>
-			</div>
-		</div>
-
-
 	</div>
 </section>
 
@@ -916,19 +916,22 @@
 
 /* ═══════════ PRIZE POOL ═══════════ */
 .prize-section {
-	background: var(--sand);
+	background: #0A1628;
 	padding: 5rem 3rem 6rem;
 	position: relative;
 	overflow: hidden;
+	border-top: 3px solid #1A5FAD;
+	border-bottom: 3px solid #1A5FAD;
 }
 
 .prize-section::before {
 	content: '';
 	position: absolute;
 	inset: 0;
-	background:
-		radial-gradient(ellipse at 50% 30%, rgba(210,180,120,0.25) 0%, transparent 60%),
-		radial-gradient(ellipse at 20% 80%, rgba(230,200,130,0.15) 0%, transparent 50%);
+	background-image:
+		linear-gradient(rgba(74,159,232,0.04) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(74,159,232,0.04) 1px, transparent 1px);
+	background-size: 24px 24px;
 	pointer-events: none;
 }
 
@@ -945,19 +948,22 @@
 	display: block;
 	font-family: var(--pixel);
 	font-size: clamp(2.5rem, 6vw, 4rem);
-	color: var(--navy);
+	color: #FFD740;
 	letter-spacing: 0.04em;
-	text-shadow: 4px 4px 0 rgba(10,22,40,0.1);
+	text-shadow: 0 0 30px rgba(255,215,64,0.4);
 }
 
 .prize-label {
 	display: block;
 	font-family: var(--pixel);
 	font-size: 0.45rem;
-	color: rgba(10,22,40,0.4);
+	color: rgba(200,230,255,0.4);
 	letter-spacing: 0.2em;
 	margin-top: 0.5rem;
 }
+
+.prize-section .section-sub { color: rgba(200,230,255,0.35); }
+.prize-section .section-title { color: #fff; }
 
 /* ═══════════ EVENT LOG ═══════════ */
 .log-section { background:#EDD9AA; padding:3rem; border-top:3px solid var(--navy); }
